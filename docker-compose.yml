@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  app:
+    depends_on:
+      - db
+    image: teste:0.1    
+    environment:
+      - INSTALL_PATH=/curso
+      - NEW=true 
+    ports:
+      - 3000:3000
+    volumes:
+      - app:/usr/src/app
+    networks:
+      - backend
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.5'
+
+  db:
+    image: posgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    volumes:
+      db:/var/lib/postgresql/data
+    networks: 
+      - backend
+
+volumes:
+  app:
+  db:
+networks:
+  backend:
+    driver: overlay
