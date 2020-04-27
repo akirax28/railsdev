@@ -7,7 +7,7 @@ services:
     image: teste:0.1    
     environment:
       - INSTALL_PATH=/curso
-      - NEW=true 
+      - NEW=true
     ports:
       - 3000:3000
     volumes:
@@ -22,9 +22,9 @@ services:
 
   db:
     image: posgres:alpine
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+    #    environment:
+    #      - POSTGRES_PASSWORD=postgres
+    #      - POSTGRES_USER=postgres
     volumes:
       - db:/var/lib/postgresql/data
     networks: 

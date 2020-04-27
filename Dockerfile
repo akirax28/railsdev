@@ -11,7 +11,7 @@ RUN apk add --no-cache --update build-base \
 				libxslt-dev\
 				libxml2-dev\
 				imagemagick
-
+RUN gem install rails
 # Set an environment variable to store where the app is installed inside
 # of the Docker image.
 ENV INSTALL_PATH /app_name
@@ -22,8 +22,9 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
 # Set NEW and NEW_RAILS
-ARG NEW
+
 ENV NEW_RAILS=$NEW
+ENV DB_SET
 
 # Use the Gemfiles as Docker cache markers. Always bundle before copying app src.
 # (the src likely changed and we don't want to invalidate Docker's cache too early)
@@ -32,8 +33,10 @@ ENV NEW_RAILS=$NEW
 COPY Gemfile Gemfile.lock ./
 
 # Rails new app 
-RUN if [[ "$NEW" == "true" ]]; then rails new $INSTALL_PATH -f test; else echo "continue"; fi
+
+
 # Set RAILS_ENV and RACK_ENV
+
 ARG RAILS_ENV
 ENV RACK_ENV=$RAILS_ENV
 
@@ -44,6 +47,7 @@ RUN gem install bundler
 RUN if [[ "$RAILS_ENV" == "production" ]]; then bundle install --without development test; else bundle install; fi
 
 # Copy the main application.
+
 COPY . ./
 
 CMD ["bundle", "exec", "rails", "s"]
