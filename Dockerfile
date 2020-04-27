@@ -21,19 +21,11 @@ RUN mkdir -p $INSTALL_PATH
 # on Docker's website extensively.
 WORKDIR $INSTALL_PATH
 
-# Set NEW and NEW_RAILS
-
-ENV NEW_RAILS=$NEW
-ENV DB_SET
-
 # Use the Gemfiles as Docker cache markers. Always bundle before copying app src.
 # (the src likely changed and we don't want to invalidate Docker's cache too early)
 # http://ilikestuffblog.com/2014/01/06/how-to-skip-bundle-install-when-deploying-a-rails-app-to-docker/
 
 COPY Gemfile Gemfile.lock ./
-
-# Rails new app 
-
 
 # Set RAILS_ENV and RACK_ENV
 
