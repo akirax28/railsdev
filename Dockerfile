@@ -56,5 +56,5 @@ RUN if [[ "$RAILS_ENV" == "production" ]]; then bundle install --without develop
 
 # Copy the main application.
 
-
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+#CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
