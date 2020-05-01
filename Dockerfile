@@ -28,7 +28,7 @@ RUN apk add --update --no-cache \
 # Set an environment variable to store where the app is installed inside
 # of the Docker image.
 ENV INSTALL_PATH /app
-RUN mkdir -p $INSTALL_PATH
+RUN mkdir -p $INSTALL_PATH curso
 
 # This sets the context of where commands will be ran in and is documented
 # on Docker's website extensively.
