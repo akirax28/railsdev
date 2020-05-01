@@ -54,7 +54,7 @@ COPY package.json yarn.lock ./
 RUN if [[ "$RAILS_ENV" == "production" ]]; then bundle install --without development test; else bundle install; fi
 
 # Copy the main application.
-RUN chmod 777 /usr/local/bundle/gems /app/node_modules 
+RUN chmod 777 /usr/local/bundle/gems /app/node_modules /app 
 CMD ["rake", "db:create"]
 #ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
 CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
