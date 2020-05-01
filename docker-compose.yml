@@ -4,11 +4,9 @@ services:
   app:
     depends_on:
       - db
-    image: railsdev:0.3    
+    image: railsdev:0.3
     environment:
-      #- INSTALL_PATH=/curso
-      - NEW=true
-      - RAILS_ENV: development
+      RAILS_ENV: development
     ports:
       - 3000:3000
     volumes:
@@ -26,8 +24,9 @@ services:
   db:
     image: postgres:alpine
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: development
     volumes:
       - db:/var/lib/postgresql/data
     networks: 

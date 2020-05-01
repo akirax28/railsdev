@@ -25,7 +25,6 @@ RUN apk add --update --no-cache \
       tzdata \
       yarn
 
-RUN gem install rails
 # Set an environment variable to store where the app is installed inside
 # of the Docker image.
 ENV INSTALL_PATH /app
@@ -55,6 +54,7 @@ COPY package.json yarn.lock ./
 RUN if [[ "$RAILS_ENV" == "production" ]]; then bundle install --without development test; else bundle install; fi
 
 # Copy the main application.
-
-ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
-#CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+#RUN rake db:create
+CMD ["rake", "db:create"]
+#ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
