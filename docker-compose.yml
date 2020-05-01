@@ -4,7 +4,7 @@ services:
   app:
     depends_on:
       - db
-    image: railsdev:0.3
+    image: railsdev:1.0
     environment:
       RAILS_ENV: development
     ports:
