@@ -23,7 +23,8 @@ RUN apk add --update --no-cache \
       postgresql-dev \
       python \
       tzdata \
-      yarn
+      yarn\
+      imagemagick
 
 # Set an environment variable to store where the app is installed inside
 # of the Docker image.

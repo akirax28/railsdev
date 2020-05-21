@@ -1,5 +1,5 @@
 #!/bin/sh
-
+bundle install
 set -e
 
 if [ -f tmp/pids/server.pid ]; then
